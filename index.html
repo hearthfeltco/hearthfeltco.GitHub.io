@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearthfelt — Recipes from My Kitchen to Yours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f0e6;--warm-white:#fdfaf5;--linen:#f0e8d8;
+  --sage:#7d9a7e;--sage-light:#a8bf9f;--sage-dark:#4a6b4a;
+  --salmon:#d6a499;--rust:#b85c38;--rust-dark:#8f3e1e;
+  --mustard:#c9a84c;--mustard-lt:#dfc278;
+  --tan:#c4a882;--brown:#5c3d1e;--brown-lt:#8b6b45;--brown-dk:#3a2010;
+  --text:#3a2a14;--text-lt:#7a5c38;--border:#ddd0b8;--shadow:rgba(92,61,30,0.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lora',Georgia,serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;}
+.hero-base{position:absolute;inset:0;background:linear-gradient(180deg,#0e0500 0%,#1c0a02 35%,#280e04 65%,#160802 100%);}
+.hero-wood{position:absolute;inset:0;opacity:0.15;background-image:repeating-linear-gradient(91deg,transparent 0px,transparent 20px,rgba(255,255,255,0.03) 20px,rgba(255,255,255,0.03) 21px,transparent 21px,transparent 42px,rgba(0,0,0,0.07) 42px,rgba(0,0,0,0.07) 43px);}
+.hero-fire-glow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 50% at 50% 88%,rgba(210,100,15,0.7) 0%,rgba(170,70,8,0.42) 28%,rgba(110,42,4,0.18) 52%,transparent 70%),radial-gradient(ellipse 35% 25% at 50% 95%,rgba(255,150,25,0.48) 0%,transparent 60%);}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 100% 55% at 50% 0%,rgba(0,0,0,0.7) 0%,transparent 100%),radial-gradient(ellipse 28% 100% at 0% 50%,rgba(0,0,0,0.55) 0%,transparent 100%),radial-gradient(ellipse 28% 100% at 100% 50%,rgba(0,0,0,0.55) 0%,transparent 100%);}
+.hero-svg{position:absolute;inset:0;width:100%;height:100%;}
+.hero-content{position:relative;z-index:10;text-align:center;padding:2rem 2rem 4rem;}
+.hero-eyebrow{font-family:'Dancing Script',cursive;color:var(--mustard-lt);font-size:1.15rem;letter-spacing:0.08em;opacity:0.9;margin-bottom:0.4rem;}
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(3rem,6vw,5rem);font-weight:700;color:#f5ecd8;line-height:1.05;letter-spacing:-0.01em;text-shadow:0 2px 24px rgba(0,0,0,0.75),0 0 60px rgba(0,0,0,0.4);}
+.hero-title .h-gold{color:#e8d49a;}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:0.8rem;margin:0.9rem auto;}
+.hero-divider-line{width:55px;height:1px;background:var(--mustard);opacity:0.5;}
+.hero-divider-dot{color:var(--mustard-lt);font-size:0.5rem;opacity:0.7;}
+.hero-tagline{font-family:'Lora',serif;font-style:italic;color:rgba(245,236,216,0.68);font-size:clamp(0.82rem,1.4vw,0.98rem);letter-spacing:0.02em;max-width:760px;margin:0 auto;line-height:1.85;text-align:center;}
+
+/* NAV */
+.nav{background:var(--sage-dark);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.22);}
+.nav-row{max-width:1100px;margin:0 auto;display:flex;align-items:center;flex-wrap:nowrap;padding:0 1rem;overflow-x:auto;scrollbar-width:none;}
+.nav-row::-webkit-scrollbar{display:none;}
+.nav-row-2{background:rgba(0,0,0,0.18);border-top:1px solid rgba(255,255,255,0.07);}
+.nav-btn{background:none;border:none;border-bottom:2px solid transparent;color:rgba(253,250,245,0.75);font-family:'Lora',serif;font-size:0.74rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.82rem 0.85rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;white-space:nowrap;flex-shrink:0;}
+.nav-btn:hover,.nav-btn.active{color:#fff;border-bottom-color:var(--mustard);}
+.nav-btn.fav-btn{color:rgba(255,220,100,0.85);}
+.nav-btn.fav-btn:hover,.nav-btn.fav-btn.active{color:#ffe566;border-bottom-color:#ffe566;}
+.nav-btn.mama-btn{color:rgba(212,180,140,0.85);}
+.nav-btn.mama-btn:hover,.nav-btn.mama-btn.active{color:#f0d4a8;border-bottom-color:#f0d4a8;}
+
+/* SEARCH */
+.search-wrap{background:var(--warm-white);border-bottom:1px solid var(--border);padding:1.1rem 2rem;}
+.search-inner{max-width:540px;margin:0 auto;position:relative;}
+.search-inner input{width:100%;padding:0.75rem 1.25rem 0.75rem 2.75rem;border:1.5px solid var(--border);border-radius:50px;font-family:'Lora',serif;font-style:italic;font-size:0.93rem;background:white;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.search-inner input:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(125,154,126,0.15);}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--tan);font-size:0.9rem;pointer-events:none;}
+
+/* MAIN */
+.main{max-width:1100px;margin:2.5rem auto;padding:0 1.5rem;}
+
+/* FEATURED */
+.featured-banner{background:linear-gradient(135deg,#3a1c08,#5c2e10);border-radius:14px;padding:2rem 2.5rem;margin-bottom:2.75rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden;}
+.featured-banner::after{content:'';position:absolute;right:0;top:0;bottom:0;width:200px;background:radial-gradient(ellipse at right center,rgba(201,168,76,0.12),transparent 70%);pointer-events:none;}
+.featured-label{font-family:'Dancing Script',cursive;color:var(--mustard-lt);font-size:1rem;margin-bottom:0.3rem;}
+.featured-title{font-family:'Playfair Display',serif;font-size:1.85rem;color:#f5ecd8;font-weight:700;margin-bottom:0.45rem;line-height:1.2;}
+.featured-desc{color:rgba(245,236,216,0.68);font-size:0.9rem;font-style:italic;line-height:1.65;max-width:500px;}
+.featured-btn{background:var(--mustard);color:var(--brown-dk);border:none;padding:0.7rem 1.6rem;border-radius:50px;font-family:'Lora',serif;font-weight:600;font-size:0.88rem;cursor:pointer;transition:background 0.2s,transform 0.15s;white-space:nowrap;flex-shrink:0;}
+.featured-btn:hover{background:var(--mustard-lt);transform:translateY(-1px);}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;}
+.section-head h2{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--brown);white-space:nowrap;}
+.section-head-line{flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);}
+
+/* GRID */
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.65rem;margin-bottom:3rem;}
+
+/* CARD */
+.recipe-card{background:white;border-radius:13px;overflow:hidden;box-shadow:0 2px 14px var(--shadow);cursor:pointer;transition:transform 0.22s ease,box-shadow 0.22s ease;border:1px solid var(--border);display:flex;flex-direction:column;}
+.recipe-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(92,61,30,0.2);}
+.card-thumb{height:185px;display:flex;align-items:center;justify-content:center;font-size:3.8rem;flex-shrink:0;position:relative;overflow:hidden;}
+.thumb-main{background:linear-gradient(135deg,#c4855a,#e0a87a,#f5c89a);}
+.thumb-bread{background:linear-gradient(135deg,#b89050,#d4ac6a,#eacc8a);}
+.thumb-dessert{background:linear-gradient(135deg,#b86878,#d08898,#eaaab0);}
+.thumb-soup{background:linear-gradient(135deg,#5a8870,#7aaa8a,#9eccaa);}
+.thumb-snack{background:linear-gradient(135deg,#907040,#b09060,#caaa80);}
+.thumb-sauce{background:linear-gradient(135deg,#806020,#a08040,#baa060);}
+.thumb-camp{background:linear-gradient(135deg,#4a3018,#6a4828,#8a6848);}
+.thumb-breakfast{background:linear-gradient(135deg,#c47838,#dca058,#f0be80);}
+.thumb-casserole{background:linear-gradient(135deg,#9a7060,#b89080,#d4aaa0);}
+.thumb-mama{background:linear-gradient(135deg,#8a5848,#aa7868,#c89888);}
+.card-thumb-emoji{font-size:3.8rem;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.18));position:relative;z-index:1;}
+.card-body{padding:1.1rem 1.35rem 1.4rem;flex:1;display:flex;flex-direction:column;}
+.card-tags{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.55rem;}
+.tag{background:var(--cream);color:var(--brown-lt);font-size:0.67rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.16rem 0.58rem;border-radius:50px;border:1px solid var(--border);}
+.tag-fav{background:#fff8e8;color:#8a5010;border-color:#dfc278;}
+.tag-mama{background:#f5ede8;color:#7a3828;border-color:#d4a488;}
+.card-title{font-family:'Playfair Display',serif;font-size:1.12rem;color:var(--brown);line-height:1.3;margin-bottom:0.45rem;}
+.card-preview{font-size:0.82rem;color:var(--text-lt);line-height:1.58;font-style:italic;flex:1;}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:0.9rem;padding-top:0.8rem;border-top:1px solid var(--border);}
+.card-source{font-size:0.72rem;color:var(--tan);font-style:italic;}
+.view-btn{background:var(--sage);color:white;border:none;padding:0.4rem 1rem;border-radius:50px;font-family:'Lora',serif;font-size:0.79rem;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.view-btn:hover{background:var(--sage-dark);}
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text-lt);font-style:italic;display:none;}
+.no-results.show{display:block;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(25,10,2,0.72);z-index:1000;overflow-y:auto;padding:2rem 1rem;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{background:var(--warm-white);border-radius:16px;width:100%;max-width:660px;box-shadow:0 24px 80px rgba(0,0,0,0.38);overflow:hidden;animation:modalIn 0.24s ease;}
+@keyframes modalIn{from{opacity:0;transform:translateY(18px) scale(0.98);}to{opacity:1;transform:none;}}
+.modal-header{padding:2rem 2rem 0;position:relative;}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;background:var(--cream);border:1px solid var(--border);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.95rem;color:var(--text-lt);transition:background 0.18s;}
+.modal-close:hover{background:var(--border);}
+.modal-tags{margin-bottom:0.55rem;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--brown);line-height:1.2;margin-bottom:0.45rem;}
+.modal-desc{font-style:italic;color:var(--text-lt);font-size:0.9rem;line-height:1.62;margin-bottom:1rem;}
+.modal-divider{height:1px;background:var(--border);margin:0 -2rem;}
+.modal-body{padding:1.5rem 2rem 2rem;}
+.modal-section-title{font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--sage-dark);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.modal-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.ingredients-list{list-style:none;margin-bottom:1.75rem;display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1.5rem;}
+.ingredients-list li{font-size:0.88rem;color:var(--text);line-height:1.5;padding:0.28rem 0;border-bottom:1px dashed var(--border);display:flex;align-items:baseline;gap:0.4rem;}
+.ingredients-list li::before{content:'✦';color:var(--mustard);font-size:0.5rem;flex-shrink:0;position:relative;top:-1px;}
+.ing-header{grid-column:1/-1;font-weight:600;color:var(--sage-dark);font-style:normal;border-bottom:1px solid var(--border)!important;padding-bottom:4px!important;margin-top:4px;font-size:0.8rem;letter-spacing:0.05em;text-transform:uppercase;}
+.ing-header::before{display:none!important;}
+.instructions-list{list-style:none;margin-bottom:1.5rem;}
+.instructions-list li{font-size:0.91rem;color:var(--text);line-height:1.72;padding:0.55rem 0 0.55rem 2.4rem;border-bottom:1px solid var(--cream);position:relative;}
+.instructions-list li:last-child{border-bottom:none;}
+.step-num{position:absolute;left:0;top:0.6rem;background:var(--sage);color:white;width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:600;font-family:'Lora',serif;}
+.modal-note{background:#fffbef;border-left:3px solid var(--mustard);border-radius:0 7px 7px 0;padding:0.8rem 1rem;font-size:0.84rem;color:var(--text-lt);font-style:italic;line-height:1.62;margin-bottom:1.5rem;}
+.modal-source{font-size:0.78rem;color:var(--tan);font-style:italic;margin-bottom:1.5rem;}
+.modal-actions{display:flex;gap:0.7rem;flex-wrap:wrap;}
+.btn-print{background:var(--rust);color:white;border:none;padding:0.62rem 1.4rem;border-radius:50px;font-family:'Lora',serif;font-weight:600;font-size:0.86rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;gap:0.45rem;}
+.btn-print:hover{background:var(--rust-dark);}
+.btn-close-modal{background:var(--cream);color:var(--text-lt);border:1.5px solid var(--border);padding:0.62rem 1.4rem;border-radius:50px;font-family:'Lora',serif;font-weight:600;font-size:0.86rem;cursor:pointer;transition:background 0.2s;}
+.btn-close-modal:hover{background:var(--border);}
+
+/* FOOTER */
+.footer{background:var(--brown-dk);color:rgba(245,236,216,0.6);text-align:center;padding:2.5rem 2rem;font-size:0.84rem;font-style:italic;line-height:1.85;}
+.footer-brand{font-family:'Dancing Script',cursive;color:var(--mustard-lt);font-size:1.65rem;margin-bottom:0.4rem;font-style:normal;}
+.footer a{color:var(--mustard-lt);text-decoration:none;}
+
+/* PRINT */
+@media print{
+  body *{visibility:hidden;}
+  .print-area,.print-area *{visibility:visible;}
+  .print-area{position:fixed;inset:0;background:white;padding:2cm;font-family:Georgia,serif;}
+  .print-title{font-size:22pt;font-weight:bold;margin-bottom:7pt;color:#3a2a14;}
+  .print-desc{font-style:italic;color:#7a5c38;margin-bottom:13pt;font-size:10.5pt;}
+  .print-section{font-size:9pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#4a6b4a;margin:13pt 0 5pt;border-bottom:0.5pt solid #ddd0b8;padding-bottom:3pt;}
+  .print-ingredients{column-count:2;column-gap:18pt;margin-bottom:13pt;}
+  .print-ingredient{font-size:9.5pt;padding:2pt 0;break-inside:avoid;}
+  .print-step{font-size:10pt;line-height:1.65;margin-bottom:5pt;}
+  .print-note{font-style:italic;font-size:9pt;color:#7a5c38;border-left:2pt solid #c9a84c;padding-left:7pt;margin-top:11pt;}
+  .print-source{font-size:8pt;color:#c4a882;font-style:italic;margin-top:9pt;}
+  .print-brand{margin-top:14pt;font-size:8.5pt;color:#c4a882;font-style:italic;border-top:0.5pt solid #ddd0b8;padding-top:7pt;}
+}
+@media(max-width:620px){
+  .featured-banner{grid-template-columns:1fr;padding:1.6rem;}
+  .modal-title{font-size:1.5rem;}
+  .ingredients-list{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-base"></div>
+  <div class="hero-wood"></div>
+  <div class="hero-fire-glow"></div>
+  <div class="hero-vignette"></div>
+
+  
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">a recipe collection</div>
+    <h1 class="hero-title"><span class="h-gold">H</span>earthfelt</h1>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <span class="hero-divider-dot">✦</span>
+      <div class="hero-divider-line"></div>
+    </div>
+    <p class="hero-tagline">tried &amp; true recipes from my kitchen to yours — made with love,<br>shared with family &amp; friends</p>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-row">
+    <button class="nav-btn active" onclick="filterCat('all',this)">All Recipes</button>
+    <button class="nav-btn" onclick="filterCat('main',this)">Main Dishes</button>
+    <button class="nav-btn" onclick="filterCat('bread',this)">Breads</button>
+    <button class="nav-btn" onclick="filterCat('dessert',this)">Desserts</button>
+    <button class="nav-btn" onclick="filterCat('soup',this)">Soups</button>
+    <button class="nav-btn" onclick="filterCat('snack',this)">Snacks</button>
+    <button class="nav-btn" onclick="filterCat('sauce',this)">Sauces</button>
+    <button class="nav-btn" onclick="filterCat('breakfast',this)">Breakfast</button>
+    <button class="nav-btn" onclick="filterCat('camp',this)">Camp &amp; Outdoor</button>
+  </div>
+  <div class="nav-row nav-row-2">
+    <button class="nav-btn fav-btn" onclick="filterCat('favorite',this)">⭐ Family Favorites</button>
+    <button class="nav-btn mama-btn" onclick="filterCat('mama',this)">❤️ By Mama Carrie</button>
+  </div>
+</nav>
+
+<div class="search-wrap">
+  <div class="search-inner">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search recipes, ingredients…" oninput="filterSearch(this.value)">
+  </div>
+</div>
+
+<main class="main">
+  <div class="featured-banner" id="featuredBanner">
+    <div>
+      <div class="featured-label" id="featLabel">family favorite ✦</div>
+      <div class="featured-title" id="featTitle"></div>
+      <div class="featured-desc" id="featDesc"></div>
+    </div>
+    <button class="featured-btn" id="featBtn">View Recipe →</button>
+  </div>
+  <div class="section-head">
+    <h2 id="sectionTitle">All Recipes</h2>
+    <div class="section-head-line"></div>
+  </div>
+  <div class="recipe-grid" id="recipeGrid"></div>
+  <div class="no-results" id="noResults">No recipes found — try a different search! 🌿</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">Hearthfelt</div>
+  <p>Recipes gathered with love, tested in real kitchens, shared with family &amp; friends.</p>
+  <p style="margin-top:0.5rem">© 2026 Hearthfelt Co. &nbsp;·&nbsp; <a href="mailto:hearthfelt.co@gmail.com">hearthfelt.co@gmail.com</a></p>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-tags" id="modalTags"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-divider"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Ingredients</div>
+      <ul class="ingredients-list" id="modalIngredients"></ul>
+      <div class="modal-section-title">Instructions</div>
+      <ol class="instructions-list" id="modalInstructions"></ol>
+      <div class="modal-note" id="modalNote" style="display:none"></div>
+      <div class="modal-source" id="modalSource" style="display:none"></div>
+      <div class="modal-actions">
+        <button class="btn-print" onclick="printRecipe()">🖨 Print Recipe</button>
+        <button class="btn-close-modal" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="print-area" id="printArea" style="display:none"></div>
+
+<script>
+const recipes=[
+  {id:'hawaiian-chicken',title:'Instant Pot Hawaiian Chicken',categories:['main'],thumb:'thumb-main',emoji:'🍍',desc:'Sweet, tangy BBQ chicken with pineapple — weeknight magic in the Instant Pot.',ingredients:['3–4 boneless/skinless chicken breasts','2 cups Sweet Baby Ray\'s BBQ Sauce','¾ cup pineapple juice','1 cup pineapple chunks','2 Tbsp. soy sauce','½ Tbsp. sriracha sauce','1 tsp. dijon mustard','2 Tbsp. cold water','2 Tbsp. cornstarch','Sesame seeds, for garnish','Green onions, chopped, for garnish'],steps:['Place chicken in Instant Pot. Add BBQ sauce, pineapple juice, pineapple chunks, soy sauce, sriracha, and dijon mustard; stir to combine.','Set release valve to "Seal" and pressure cook on HIGH for 15 minutes. Quick release when done.','Remove chicken; set aside. Set Instant Pot to Sauté mode.','Mix cornstarch into cold water until smooth; add to sauce. Stir until thickened.','Dice or shred chicken; return to sauce and stir.','Serve over rice, drizzle with extra sauce, garnish with sesame seeds and green onions.'],source:'Mama Carrie\'s kitchen'},
+  {id:'teriyaki-jerky',title:'Homemade Teriyaki Jerky',categories:['snack','camp'],thumb:'thumb-camp',emoji:'🥩',desc:'Rich, chewy homemade jerky — perfect for the trail, the truck, or the couch.',note:'Plan ahead — requires marinating overnight.',ingredients:['½ cup soy sauce','¼ cup Mirin or sweet cooking wine','¼ cup teriyaki marinade','2 Tbsp. sugar','3 coins fresh ginger (¼" thick) or 2 tsp. powdered ginger','1 crushed garlic clove','½ tsp. onion powder','½ tsp. black pepper','2 lbs. beef round or flank steak — partially frozen','1 tsp. liquid smoke','1 Tbsp. Montreal Steak Seasoning','1 Tbsp. dry rub of choice'],steps:['Combine all ingredients except meat in a gallon zip bag.','Slice beef into ¼" strips AGAINST the grain. Trim all fat.','Add beef to marinade; seal and massage to coat. Refrigerate overnight.','Start smoker on "Smoke" with lid open 4–5 minutes.','Remove meat; discard marinade. Pat dry if needed.','Smoke 4–5 hours until dry but chewy and pliable when bent.','Transfer to zip bag; rest 1 hour at room temperature. Squeeze out air and refrigerate.'],source:'Mama Carrie\'s kitchen'},
+  {id:'salsa',title:'Salsa Picante Fresca',categories:['sauce','snack'],thumb:'thumb-sauce',emoji:'🌶️',desc:'Fresh, fiery blender salsa ready in 5 minutes flat.',ingredients:['6 Roma tomatoes, coarsely diced','1½ jalapeños, halved, stems removed (keep seeds)','1 handful fresh cilantro','2 tsp. garlic powder','2 tsp. taco seasoning','Salt & pepper to taste'],steps:['Place all ingredients into a blender or NutriBullet.','Blend until cilantro and jalapeños are finely chopped.','For more heat, add another ½ jalapeño or a serrano pepper.'],source:'Mama Carrie\'s kitchen'},
+  {id:'bread-machine-bread',title:'Best Bread Machine Bread',categories:['bread'],thumb:'thumb-bread',emoji:'🍞',desc:'Perfect every time — a reliable, golden loaf that smells like home.',note:'For whole wheat: replace 1½ cups bread flour with whole wheat flour.',ingredients:['1⅓ cups warm water (~110°F)','⅓ cup olive oil','2 tsp. salt','4 cups bread flour','2 Tbsp. + 2 tsp. white sugar','3 tsp. (1 pkg.) rapid-dry yeast'],steps:['Add to bread machine IN THIS ORDER: warm water, olive oil, salt.','Add flour; make a mound and dig a well in center.','Pour sugar into one corner. Pour yeast into the well.','Set machine to "Basic" loaf and press Start.'],source:'Adapted from "Dinner with the Bickfords" blog'},
+  {id:'banana-cake',title:'The Best Banana Cake',categories:['dessert'],thumb:'thumb-dessert',emoji:'🍌',desc:'Ultra-moist banana cake with lemon cream cheese frosting — impossible to eat just one piece.',note:'Beat butter, sugars & eggs until VERY fluffy — about 5 minutes. Check cake at 55 min; time can vary 20–30 min more.',ingredients:['1⅓ cup mashed bananas','2½ Tbsp. lemon juice, divided','1½ cups milk','3 cups flour','½ Tbsp. baking soda','¼ tsp. salt','⅔ cup butter, softened','1 cup white sugar','½ cup brown sugar','3 large eggs, room temperature','1 tsp. vanilla','— FROSTING —','8 oz. cream cheese, softened','⅓ cup butter, softened','3–3½ cups powdered sugar','1 tsp. lemon juice','1½ tsp. lemon zest'],steps:['Preheat oven to 350°F. Grease & flour a 9×13" pan.','Put 1½ Tbsp. lemon juice in measuring cup; fill to 1½ cups with milk. Set aside.','Mix banana with remaining 1 Tbsp. lemon juice; set aside.','Beat butter & sugars. Add vanilla. Add eggs one at a time. Beat on HIGH until very fluffy, ~5 minutes.','Combine flour, baking soda & salt. Alternate adding flour and milk to egg mixture; stir just until combined. Fold in banana.','Pour into pan. Place in oven; immediately reduce to 300°F. Bake 60–70+ min until toothpick comes out clean.','Place uncovered in freezer 45 minutes — secret to moisture.','FROSTING: Cream butter & cream cheese. Add lemon zest & juice. Add powdered sugar to desired consistency. Spread over completely cooled cake.'],source:'Adapted from Spend with Pennies'},
+  {id:'strawberry-chicken',title:'Strawberry Garlic Chicken Marinade',categories:['sauce','main','camp'],thumb:'thumb-sauce',emoji:'🍓',desc:'An unexpected combination that produces the most flavorful grilled chicken you\'ve ever tasted.',note:'Makes enough for 3 lbs. chicken. Marinate at least 2 hours — overnight is better.',ingredients:['18 oz. strawberry yogurt','15 large fresh strawberries','15 cloves garlic','1½ cups soy sauce','1½ tsp. paprika','3 tsp. rosemary','⅓ Tbsp. dijon mustard','Juice of 1 lime'],steps:['Add all ingredients to a blender.','Blend on high until completely smooth.','Pour over chicken; marinate at least 2 hours refrigerated.','Grill, bake, or pan-fry until cooked through.'],source:'Mama Carrie\'s kitchen'},
+  {id:'cinnamon-rolls',title:'Slow Cooker Cinnamon Rolls',categories:['breakfast','dessert'],thumb:'thumb-breakfast',emoji:'🌀',desc:'Pillowy cinnamon rolls made in the crock pot — soft, gooey, and crowned with cream cheese glaze.',note:'Makes 10–12 rolls. Line slow cooker with parchment paper for easy removal.',ingredients:['— DOUGH —','1 cup + 2 Tbsp. warm whole milk (120°F)','2 tsp. honey','1 pkg. (0.25 oz.) instant dry yeast','3¼ cups all-purpose flour','¼ cup sugar','½ tsp. kosher salt','6 Tbsp. unsalted butter, melted & cooled','1 large egg, lightly beaten','— FILLING —','6 Tbsp. unsalted butter, softened','⅓ cup packed light brown sugar','1½ Tbsp. ground cinnamon','¼ tsp. ground nutmeg','— GLAZE —','4 oz. cream cheese, softened','2½ cups confectioners\' sugar, sifted','2 Tbsp. heavy whipping cream','½ tsp. vanilla extract'],steps:['Spray a 5–6 qt slow cooker; line with parchment; spray again.','Stir yeast into warm milk and honey in stand mixer. Let stand 5 minutes.','Whisk flour, sugar & salt. With mixer on low, add flour to milk. Add butter and egg; beat until dough forms. Switch to dough hook; beat on medium 5–7 minutes.','Roll dough into a 15×9" rectangle. Spread softened butter over dough.','Mix brown sugar, cinnamon & nutmeg; sprinkle over butter. Roll into a log; pinch seam. Slice into 12 rolls.','Place in slow cooker. Cover and cook on HIGH 2 hours.','Lift from slow cooker using parchment.','GLAZE: Beat cream cheese until creamy. Add powdered sugar gradually. Beat in cream and vanilla. Drizzle over warm rolls.'],source:'Adapted from Taste of the South Magazine'},
+  {id:'apple-cobbler',title:'Apple Cobbler',categories:['dessert'],thumb:'thumb-dessert',emoji:'🍎',desc:'Warm spiced apples under golden biscuit topping — the crock pot does all the work.',note:'Serve warm with vanilla ice cream & caramel sauce. Makes 8 servings.',ingredients:['5 Honeycrisp apples, cored & sliced into 8 sections','½ cup + 2 Tbsp. sugar, divided','3 Tbsp. cornstarch','2 Tbsp. orange zest','2 Tbsp. fresh orange juice','3½ tsp. ground cinnamon, divided','½ can (10.2 oz.) refrigerated buttermilk biscuits','Vanilla ice cream & caramel sauce, to serve'],steps:['Line a 6-qt slow cooker with foil.','Stir together apples, ½ cup sugar, cornstarch, orange zest, orange juice & 2 tsp. cinnamon. Spoon into slow cooker.','Cut biscuits into 6 wedges; place on top of apples.','Mix remaining 2 Tbsp. sugar and 1½ tsp. cinnamon; sprinkle over biscuits.','Cover and cook on HIGH for 2½ hours.','Serve warm with vanilla ice cream & caramel sauce.'],source:'Adapted from Taste of the South Magazine'},
+  {id:'icebox-rolls',title:'Mary\'s Ice Box Wonder Rolls',categories:['bread'],thumb:'thumb-bread',emoji:'🥖',desc:'A generations-old recipe from Mary Pinson — light, fluffy rolls you can start the night before.',note:'Makes 24 rolls or 2 loaves. Dough keeps overnight in the refrigerator.',ingredients:['½ cup warm water','1 pkg. dry yeast','2 cups water, divided','½ cup margarine','½ cup sugar','1 tsp. salt','1 egg, beaten','5½ cups flour (rolls) or 6½ cups (bread)'],steps:['Dissolve yeast in ½ cup warm water.','Melt margarine with 1 cup water. Add second cup water, sugar, salt, egg & yeast. Mix well.','Add flour; stir until soft dough forms. Place in greased bowl; cover and let rise 2 hours.','Punch down; cover and refrigerate 3 hours or overnight.','Preheat oven to 350°F. Form into 24 rolls or 2 loaves. Let rise until doubled.','Bake rolls 15–25 min; bread 35 min or until done.'],source:'From the kitchen of Mary Pinson'},
+  {id:'chicken-rice-soup',title:'Easy Cheater Chicken & Rice Soup',categories:['soup'],thumb:'thumb-soup',emoji:'🍲',desc:'Rotisserie chicken shortcut makes this rich, cozy soup completely doable on a weeknight.',ingredients:['6 cups chicken broth','4 cups water','1 can cream of chicken soup, undiluted','2 large garlic cloves, minced','1 cup chopped yellow onion','1 cup sliced carrots','1 cup sliced celery','1 bay leaf','1 Tbsp. sea salt, to taste','½ Tbsp. ground black pepper, to taste','½ tsp. dried thyme','2 cups white rice','1 rotisserie chicken, deboned & shredded'],steps:['Place all ingredients except rice and chicken in large stock pot. Bring to a boil.','Boil gently until vegetables are tender, ~10–12 minutes.','Add rice; return to boil; cover and simmer ~12 minutes until rice is tender.','Add chicken; stir and heat through. Remove bay leaf. Serve hot.'],source:'Mama Carrie\'s kitchen'},
+  {id:'chicken-alfredo',title:'Dump & Bake Chicken Alfredo Pasta Casserole',categories:['main','casserole','favorite'],thumb:'thumb-casserole',emoji:'🍝',desc:'The whole family\'s most-requested weeknight casserole — creamy, cheesy & almost no prep.',ingredients:['Recipe coming soon!'],steps:['Check back soon — Mama Carrie is writing this one up!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'garlic-bread',title:'Braided Garlic Bread',categories:['bread'],thumb:'thumb-bread',emoji:'🥖',desc:'Showstopper braided loaf dripping with garlic butter — looks impressive, tastes even better.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'apple-kuchen',title:'Apple Kuchen',categories:['dessert','breakfast','favorite'],thumb:'thumb-dessert',emoji:'🍏',desc:'A beloved German apple cake — tender, buttery & perfect with coffee.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'elk-chili',title:'Easy Chipotle Elk Chili',categories:['soup','camp'],thumb:'thumb-soup',emoji:'🫕',desc:'Smoky, bold chipotle chili made with wild game — campfire or stovetop.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'aunt-janice-bread',title:'Aunt Janice\'s Bread',categories:['bread'],thumb:'thumb-bread',emoji:'🍞',desc:'A family treasure — soft homemade bread from Aunt Janice\'s kitchen.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Aunt Janice',comingSoon:true},
+  {id:'taco-salad',title:'Ree\'s Chicken Taco Salad',categories:['main'],thumb:'thumb-main',emoji:'🥗',desc:'A crowd-pleasing Tex-Mex salad — crispy, colorful & totally satisfying.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Ree Drummond',comingSoon:true},
+  {id:'chicken-ruffle',title:'Chicken Ruffle Casserole',categories:['main','casserole','favorite'],thumb:'thumb-casserole',emoji:'🥘',desc:'A cozy, comforting casserole the whole family asks for again and again.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'cheesy-potato-casserole',title:'Cheesy Chicken & Potato Casserole',categories:['main','casserole'],thumb:'thumb-casserole',emoji:'🥔',desc:'Hearty, cheesy & warming — a one-pan dinner done right.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'ooey-gooey-cake',title:'Ooey-Gooey Chocolatey Goodness Cake',categories:['dessert','favorite','mama'],thumb:'thumb-dessert',emoji:'🍫',desc:'The name says it all. Rich, fudgy & completely irresistible.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'pumpkin-cheesecakes',title:'Mini Pumpkin Cheesecakes',categories:['dessert'],thumb:'thumb-dessert',emoji:'🎃',desc:'Individual creamy pumpkin cheesecakes — perfect for fall gatherings.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'mountain-man-breakfast',title:'Mountain Man Breakfast (Dutch Oven)',categories:['breakfast','camp'],thumb:'thumb-breakfast',emoji:'⛺',desc:'The ultimate campfire breakfast — eggs, sausage, potatoes & cheese in a dutch oven.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'snickerdoodles',title:'Snickerdoodles',categories:['dessert','snack'],thumb:'thumb-dessert',emoji:'🍪',desc:'Soft, pillowy cinnamon-sugared cookies with that perfect snickerdoodle chew.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'pb-cookies',title:'Irresistible Peanut Butter Cookies',categories:['dessert','snack'],thumb:'thumb-dessert',emoji:'🥜',desc:'Thick, soft peanut butter cookies with the classic fork crosshatch.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'potato-soup',title:'Cheesy Loaded Potato Soup',categories:['soup'],thumb:'thumb-soup',emoji:'🍵',desc:'Thick, creamy potato soup loaded with cheese, bacon & sour cream.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'loaded-nachos',title:'Ree\'s Loaded Nachos',categories:['snack'],thumb:'thumb-snack',emoji:'🧀',desc:'Fully loaded nachos stacked with all the good stuff.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Ree Drummond',comingSoon:true},
+  {id:'cooleys-chili',title:'Cooley\'s Cool Chili',categories:['soup','camp'],thumb:'thumb-soup',emoji:'🌶️',desc:'A family-named chili recipe packed with bold flavor.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Cooley family',comingSoon:true},
+  {id:'salisbury-steaks',title:'Salisbury Steaks',categories:['main','favorite'],thumb:'thumb-main',emoji:'🥩',desc:'Old-fashioned homemade Salisbury steaks in rich brown gravy — pure comfort food.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'hawaiian-chicken-rice',title:'Hawaiian Chicken & Rice',categories:['main'],thumb:'thumb-main',emoji:'🍚',desc:'A tropical-flavored one-pan chicken and rice dish.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'chicken-noodle-soup',title:'Chicken Noodle Soup',categories:['soup','favorite'],thumb:'thumb-soup',emoji:'🍜',desc:'Made-from-scratch chicken noodle soup — the real deal, the way grandma made it.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'russian-chicken',title:'Russian Chicken',categories:['main'],thumb:'thumb-main',emoji:'🍗',desc:'Tangy, sweet Russian dressing chicken — a retro classic that never gets old.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'waffles',title:'Fat \'n\' Fluffy Waffles',categories:['breakfast','favorite','mama'],thumb:'thumb-breakfast',emoji:'🧇',desc:'Thick, crispy-edged, fluffy-inside waffles — weekend mornings at their finest.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'louises-buttercream',title:'Louise\'s Buttercream Frosting',categories:['dessert'],thumb:'thumb-dessert',emoji:'🎂',desc:'Grandma Louise\'s beloved buttercream — the frosting that belongs on every celebration cake.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Grandma Louise',comingSoon:true},
+  {id:'banana-bread',title:'Aaron\'s Favorite Banana Bread',categories:['bread','dessert','favorite','mama'],thumb:'thumb-bread',emoji:'🍌',desc:'Moist, perfect banana bread made exactly the way Aaron loves it.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'chicken-pot-pie',title:'Easy Chicken Pot Pie',categories:['main'],thumb:'thumb-main',emoji:'🥧',desc:'Flaky-crusted, creamy chicken pot pie — pure homemade comfort.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'choc-chip-cookies',title:'Soft & Chewy Chocolate Chip Cookies',categories:['dessert','snack','favorite','mama'],thumb:'thumb-dessert',emoji:'🍪',desc:'The only chocolate chip cookie recipe you\'ll ever need — thick, gooey & perfectly chewy.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'aussie-sausage-rolls',title:'Aussie Sausage Rolls',categories:['snack','main','favorite'],thumb:'thumb-snack',emoji:'🌭',desc:'Flaky pastry wrapped around seasoned sausage — irresistible party food.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'marshmallow-cookies',title:'Chocolate Marshmallow Cookies',categories:['dessert','snack'],thumb:'thumb-dessert',emoji:'☕',desc:'Soft chocolate cookies with gooey marshmallow centers.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'chicken-ala-king',title:'Grandma Bonny\'s Chicken à la King',categories:['main','favorite'],thumb:'thumb-main',emoji:'👑',desc:'Rich, creamy chicken à la King — a cherished recipe from Grandma Bonny.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Grandma Bonny',comingSoon:true},
+  {id:'rice-stuff',title:'Rice Stuff',categories:['main','soup'],thumb:'thumb-soup',emoji:'🍚',desc:'A family-named one-pot rice dish everyone loves.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'cocktail-meatballs',title:'Cocktail Meatballs',categories:['snack','main'],thumb:'thumb-snack',emoji:'🍢',desc:'Tender meatballs in a sweet, tangy sauce — disappear from every party spread.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'macaroni-salad',title:'Light Macaroni Salad',categories:['snack','main','favorite','mama'],thumb:'thumb-snack',emoji:'🥗',desc:'A lighter, perfectly balanced macaroni salad — the one everyone requests at cookouts.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'meatloaf',title:'My Meatloaf',categories:['main','mama'],thumb:'thumb-main',emoji:'🥩',desc:'Classic, no-fuss homemade meatloaf — comfort food at its most honest.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'oriental-cabbage',title:'Oriental Cabbage',categories:['snack','main','favorite','mama'],thumb:'thumb-snack',emoji:'🥬',desc:'A crunchy, tangy Asian-inspired cabbage salad that disappears fast.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'sugar-cookies',title:'Sugar Cookies',categories:['dessert','snack'],thumb:'thumb-dessert',emoji:'🍪',desc:'Soft, classic sugar cookies — perfect plain or decorated.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'onion-potatoes',title:'Onion Roasted Potatoes',categories:['main','snack','favorite','mama'],thumb:'thumb-snack',emoji:'🥔',desc:'Crispy, caramelized roasted potatoes seasoned with onion — simple & addictive.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'funeral-potatoes',title:'Funeral Potatoes',categories:['main','snack'],thumb:'thumb-casserole',emoji:'🧀',desc:'Creamy, cheesy hashbrown casserole — legendary at potlucks for good reason.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'italian-chicken',title:'Italian Chicken',categories:['main'],thumb:'thumb-main',emoji:'🍗',desc:'Tender Italian-seasoned baked chicken — easy and full of flavor.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'oatmeal-cookies',title:'Soft & Chewy Oatmeal Cookies',categories:['dessert','snack','favorite','mama'],thumb:'thumb-dessert',emoji:'🍪',desc:'Thick, soft oatmeal cookies — chewy in the center, slightly crisp at the edges.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'spanish-rice',title:'Easy Spanish Rice',categories:['main','snack','favorite','mama'],thumb:'thumb-main',emoji:'🍚',desc:'Perfectly seasoned homemade Spanish rice — better than any restaurant version.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'pie-crust-carolyn',title:'Carolyn\'s Pie Crust',categories:['dessert'],thumb:'thumb-dessert',emoji:'🥧',desc:'A reliable, flaky pie crust from Carolyn\'s kitchen.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Carolyn',comingSoon:true},
+  {id:'indian-fry-bread',title:'Mary\'s Indian Fry Bread',categories:['bread','snack'],thumb:'thumb-bread',emoji:'🫓',desc:'Golden, puffy fry bread from Mary\'s family tradition.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mary',comingSoon:true},
+  {id:'ice-cream-sandwich-cake',title:'Ice Cream Sandwich Cake',categories:['dessert'],thumb:'thumb-dessert',emoji:'🍦',desc:'No-bake ice cream sandwich cake — kids and adults both go crazy for it.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'monkey-bread',title:'Monkey Bread',categories:['breakfast','dessert'],thumb:'thumb-breakfast',emoji:'🍞',desc:'Pull-apart cinnamon sugar bread — impossible to stop eating.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'pie-crust-janice',title:'Aunt Janice\'s Never-Fail Pie Crust',categories:['dessert'],thumb:'thumb-dessert',emoji:'🥧',desc:'Aunt Janice\'s foolproof pie crust — flaky every single time.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Aunt Janice',comingSoon:true},
+  {id:'baked-cheesecake',title:'Mama Carrie\'s Baked Cheesecake',categories:['dessert','favorite','mama'],thumb:'thumb-dessert',emoji:'🍰',desc:'The crown jewel of the recipe box — a rich, creamy New York-style baked cheesecake everyone asks for.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+  {id:'chicken-enchiladas',title:'Chicken Enchiladas',categories:['main','favorite','mama'],thumb:'thumb-main',emoji:'🫔',desc:'Saucy, cheesy enchiladas packed with seasoned chicken — a family staple.',ingredients:['Recipe coming soon!'],steps:['Check back soon!'],source:'Mama Carrie\'s kitchen',comingSoon:true},
+];
+
+const FAVORITES=['baked-cheesecake','ooey-gooey-cake','chicken-enchiladas','choc-chip-cookies','macaroni-salad','banana-bread','chicken-alfredo'];
+let curRecipe=null,activeCat='all',searchTerm='';
+
+function renderCards(){
+  const grid=document.getElementById('recipeGrid');
+  const noResults=document.getElementById('noResults');
+  const banner=document.getElementById('featuredBanner');
+  const secTitle=document.getElementById('sectionTitle');
+  const filtered=recipes.filter(r=>{
+    const mc=activeCat==='all'||r.categories.includes(activeCat);
+    const ms=!searchTerm||r.title.toLowerCase().includes(searchTerm)||r.desc.toLowerCase().includes(searchTerm)||r.ingredients.join(' ').toLowerCase().includes(searchTerm);
+    return mc&&ms;
+  });
+  const catNames={all:'All Recipes',main:'Main Dishes',bread:'Breads',dessert:'Desserts',soup:'Soups',snack:'Snacks',sauce:'Sauces & Marinades',breakfast:'Breakfast & Brunch',camp:'Camp & Outdoor Cooking',favorite:'⭐ Family Favorites',mama:'❤️ By Mama Carrie',casserole:'Casseroles'};
+  secTitle.textContent=searchTerm?'Search Results':(catNames[activeCat]||'All Recipes');
+  banner.style.display=(activeCat==='all'&&!searchTerm)?'grid':'none';
+  grid.innerHTML='';
+  if(!filtered.length){noResults.classList.add('show');return;}
+  noResults.classList.remove('show');
+  filtered.forEach(r=>{
+    const isFav=r.categories.includes('favorite');
+    const isMama=r.categories.includes('mama');
+    const isCS=r.comingSoon;
+    const card=document.createElement('div');
+    card.className='recipe-card';
+    card.innerHTML=`<div class="card-thumb ${r.thumb}"><span class="card-thumb-emoji">${r.emoji}</span>${isCS?'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(92,61,30,0.55);color:#f0ddb8;font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-align:center;padding:0.3rem;text-transform:uppercase;">Recipe Coming Soon</div>':''}</div><div class="card-body"><div class="card-tags">${isFav?'<span class="tag tag-fav">⭐ Favorite</span>':''}${isMama?'<span class="tag tag-mama">🫙 Mama Carrie\'s</span>':''}${!isFav&&!isMama?`<span class="tag">${r.categories[0]}</span>`:''}</div><div class="card-title">${r.title}</div><div class="card-preview">${r.desc}</div><div class="card-meta"><span class="card-source">${r.source}</span><button class="view-btn" onclick="openModal('${r.id}')">View Recipe</button></div></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterCat(cat,btn){
+  activeCat=cat;searchTerm='';
+  document.getElementById('searchInput').value='';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards();
+}
+
+function filterSearch(val){
+  searchTerm=val.toLowerCase().trim();activeCat='all';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.nav-btn').classList.add('active');
+  renderCards();
+}
+
+function openModal(id){
+  const r=recipes.find(x=>x.id===id);if(!r)return;curRecipe=r;
+  const isFav=r.categories.includes('favorite');
+  const isMama=r.categories.includes('mama');
+  document.getElementById('modalTags').innerHTML=(isFav?'<span class="tag tag-fav">⭐ Family Favorite</span> ':'')+(isMama?'<span class="tag tag-mama">🫙 Mama Carrie\'s</span>':'');
+  document.getElementById('modalTitle').textContent=r.title;
+  document.getElementById('modalDesc').textContent=r.desc;
+  document.getElementById('modalIngredients').innerHTML=r.ingredients.map(i=>i.startsWith('—')?`<li class="ing-header">${i}</li>`:`<li>${i}</li>`).join('');
+  document.getElementById('modalInstructions').innerHTML=r.steps.map((s,i)=>`<li><span class="step-num">${i+1}</span>${s}</li>`).join('');
+  const noteEl=document.getElementById('modalNote');
+  if(r.note){noteEl.textContent='💡 '+r.note;noteEl.style.display='block';}else noteEl.style.display='none';
+  const srcEl=document.getElementById('modalSource');
+  if(r.source){srcEl.textContent='Source: '+r.source;srcEl.style.display='block';}else srcEl.style.display='none';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';curRecipe=null;}
+function handleOverlay(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+
+function printRecipe(){
+  if(!curRecipe)return;const r=curRecipe;
+  const ingHtml=r.ingredients.map(i=>i.startsWith('—')?`<div style="font-weight:bold;color:#4a6b4a;margin-top:8pt;column-span:all">${i}</div>`:`<div class="print-ingredient">✦ ${i}</div>`).join('');
+  document.getElementById('printArea').innerHTML=`<div class="print-title">${r.title}</div><div class="print-desc">${r.desc}</div><div class="print-section">Ingredients</div><div class="print-ingredients">${ingHtml}</div><div class="print-section">Instructions</div>${r.steps.map((s,i)=>`<div class="print-step"><strong>${i+1}.</strong> ${s}</div>`).join('')}${r.note?`<div class="print-note">💡 ${r.note}</div>`:''}${r.source?`<div class="print-source">Source: ${r.source}</div>`:''}<div class="print-brand">Hearthfelt · hearthfelt.co · Made with love, shared with family & friends.</div>`;
+  document.getElementById('printArea').style.display='block';
+  window.print();
+  document.getElementById('printArea').style.display='none';
+}
+
+function setFeatured(){
+  const favs=recipes.filter(r=>FAVORITES.includes(r.id));
+  const r=favs[Math.floor(Math.random()*favs.length)];
+  document.getElementById('featTitle').textContent=r.title;
+  document.getElementById('featDesc').textContent=r.desc;
+  document.getElementById('featBtn').onclick=()=>openModal(r.id);
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+setFeatured();
+renderCards();
+</script>
+</body>
+</html>
