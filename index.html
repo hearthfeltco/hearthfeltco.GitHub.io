@@ -441,10 +441,13 @@ function handleOverlay(e){if(e.target===document.getElementById('modalOverlay'))
 function printRecipe(){
   if(!curRecipe)return;const r=curRecipe;
   const ingHtml=r.ingredients.map(i=>i.startsWith('—')?`<div style="font-weight:bold;color:#4a6b4a;margin-top:8pt;column-span:all">${i}</div>`:`<div class="print-ingredient">✦ ${i}</div>`).join('');
-  document.getElementById('printArea').innerHTML=`<div class="print-title">${r.title}</div><div class="print-desc">${r.desc}</div><div class="print-section">Ingredients</div><div class="print-ingredients">${ingHtml}</div><div class="print-section">Instructions</div>${r.steps.map((s,i)=>`<div class="print-step"><strong>${i+1}.</strong> ${s}</div>`).join('')}${r.note?`<div class="print-note">💡 ${r.note}</div>`:''}${r.source?`<div class="print-source">Source: ${r.source}</div>`:''}<div class="print-brand">Hearthfelt · hearthfelt.co · Made with love, shared with family & friends.</div>`;
-  document.getElementById('printArea').style.display='block';
+  const printArea=document.getElementById('printArea');
+  printArea.innerHTML=`<div class="print-title">${r.title}</div><div class="print-desc">${r.desc}</div><div class="print-section">Ingredients</div><div class="print-ingredients">${ingHtml}</div><div class="print-section">Instructions</div>${r.steps.map((s,i)=>`<div class="print-step"><strong>${i+1}.</strong> ${s}</div>`).join('')}${r.note?`<div class="print-note">💡 ${r.note}</div>`:''}${r.source?`<div class="print-source">Source: ${r.source}</div>`:''}<div class="print-brand">Hearthfelt · hearthfelt.co · Made with love, shared with family & friends.</div>`;
+  printArea.style.display='block';
+  document.getElementById('modalOverlay').style.display='none';
   window.print();
-  document.getElementById('printArea').style.display='none';
+  document.getElementById('modalOverlay').style.display='flex';
+  printArea.style.display='none';
 }
 
 function setFeatured(){
